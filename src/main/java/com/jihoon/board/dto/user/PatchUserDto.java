@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PostUserResponseDto {
-	private boolean result; 
+@NoArgsConstructor
+
+public class PatchUserDto {
+	private String email;
+	private String nickname;
+	private String profile;
 }
