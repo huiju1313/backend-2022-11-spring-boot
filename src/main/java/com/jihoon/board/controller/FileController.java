@@ -30,7 +30,7 @@ public class FileController {
 	}
 	
 	// 파일을 서버에서 다운로드
-	@GetMapping("download/{fileName}")
+	@GetMapping("download/{fileName}") 
 	public ResponseEntity<Resource> fileDownload(@PathVariable("fileName") String fileName) {
 		return ResponseEntity
 				.ok()

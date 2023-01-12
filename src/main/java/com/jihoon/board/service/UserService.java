@@ -1,5 +1,8 @@
 package com.jihoon.board.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +14,24 @@ import com.jihoon.board.dto.user.ResultResponseDto;
 import com.jihoon.board.entity.MemberEntity;
 import com.jihoon.board.repository.MemberRepository;
 
-import lombok.Data;
 
 @Service
-@Data
+
 public class UserService {
 	
 	@Autowired MemberRepository memberRepository;
+	
+	public ResponseDto<List<GetUserResponseDto>> getAllUser() {
+		List<MemberEntity> memList = memberRepository.findAll();
+		
+		List<GetUserResponseDto> data =  new ArrayList<GetUserResponseDto>();
+		
+		for (MemberEntity member : memList) {
+			data.add(new GetUserResponseDto(member));	
+		}
+		return ResponseDto.setSuccess("Get User List Success", data);
+	}
+	
 	public ResponseDto<GetUserResponseDto> getUser(String email) {
 		// 해당 이메일을 데이터베이스에서 검색
 		MemberEntity member;
